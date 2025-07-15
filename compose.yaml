@@ -16,5 +16,18 @@ services:
       - 1080:1080
       - 1025:1025
 
+  nestjs:
+    build: .
+    command: npm run start:dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_HOST=db
+    volumes:
+      - ./:/app
+      - /app/node_modules
+
 volumes:
   nest_data: {}
